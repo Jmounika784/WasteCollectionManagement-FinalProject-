@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Collectors</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; }
+        table { width: 90%; margin: 20px auto; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #007bff; color: white; }
+        form { display:inline; }
+        button { padding:5px 10px; margin:0 2px; }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Collectors</h2>
+
+<table>
+    <tr>
+        <th>ID</th><th>Name</th><th>Zone</th><th>City</th><th>Approved</th><th>Actions</th>
+    </tr>
+    <tr th:each="c : ${collectors}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.collectorName}"></td>
+        <td th:text="${c.zone}"></td>
+        <td th:text="${c.city}"></td>
+        <td th:text="${c.approved}"></td>
+        <td>
+            <form th:action="@{'/admin/collector/' + ${c.id} + '/approve'}" method="post">
+                <button type="submit">Approve</button>
+            </form>
+            <form th:action="@{'/admin/collector/' + ${c.id} + '/reject'}" method="post">
+                <button type="submit">Reject</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

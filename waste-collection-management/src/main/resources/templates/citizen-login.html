@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Citizen Login</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="login-box">
+    <h2>Citizen Login</h2>
+
+    <form method="post" th:action="@{/citizen/login}">
+        <input type="text" name="citizenName" placeholder="Citizen Name" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button class="btn" type="submit">Login</button>
+    </form>
+
+    <p th:if="${error}" th:text="${error}"></p>
+</div>
+
+</body>
+</html>

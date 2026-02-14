@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Schedule</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; }
+        .box { width: 400px; margin: 50px auto; background: white; padding: 20px; border-radius: 8px; }
+        .error { color: red; margin-bottom: 10px; }
+        input, button { width: 100%; padding: 8px; margin-top: 10px; }
+        button { background:#007bff; color:white; border:none; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Add Collection Schedule</h2>
+
+    <div th:if="${error}" class="error" th:text="${error}"></div>
+
+    <form method="post" th:action="@{/admin/schedule/add}" th:object="${schedule}">
+        <input type="text" th:field="*{scheduleId}" placeholder="Schedule ID" required>
+        <input type="text" th:field="*{zone}" placeholder="Zone" required>
+        <input type="text" th:field="*{collectionDay}" placeholder="Collection Day" required>
+        <input type="text" th:field="*{collectionTime}" placeholder="Collection Time" required>
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+</body>
+</html>

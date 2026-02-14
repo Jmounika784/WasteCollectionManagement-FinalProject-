@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Feedback</title>
+</head>
+<body>
+
+<h2>All Feedback</h2>
+
+<table border="1">
+    <tr>
+        <th>Message</th>
+        <th>Zone</th>
+        <th>Citizen ID</th>
+    </tr>
+
+    <tr th:each="f : ${feedbackList}">
+        <td th:text="${f.message}"></td>
+        <td th:text="${f.zone}"></td>
+        <td th:text="${f.citizen.id}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

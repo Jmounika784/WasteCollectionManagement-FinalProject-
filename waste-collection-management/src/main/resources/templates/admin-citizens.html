@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Citizens</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; }
+        table { width: 90%; margin: 20px auto; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #007bff; color: white; }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Citizens</h2>
+
+<table>
+    <tr>
+        <th>ID</th><th>Name</th><th>City</th><th>User ID</th><th>Contact</th>
+    </tr>
+    <tr th:each="c : ${citizens}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.citizenName}"></td>
+        <td th:text="${c.city}"></td>
+        <td th:text="${c.userId}"></td>
+        <td th:text="${c.contactNumber}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

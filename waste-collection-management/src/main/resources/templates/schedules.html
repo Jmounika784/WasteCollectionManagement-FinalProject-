@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Schedules</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; }
+        table { width: 90%; margin: 20px auto; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        th { background: #007bff; color: white; }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Collection Schedules</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Schedule ID</th>
+        <th>Zone</th>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Status</th>
+    </tr>
+
+    <tr th:each="s : ${schedules}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.scheduleId}"></td>
+        <td th:text="${s.zone}"></td>
+        <td th:text="${s.collectionDay}"></td>
+        <td th:text="${s.collectionTime}"></td>
+        <td th:text="${s.collectionStatus}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

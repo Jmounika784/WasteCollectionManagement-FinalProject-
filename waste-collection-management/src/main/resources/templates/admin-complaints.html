@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Complaints</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; }
+        table { width: 95%; margin: 20px auto; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        th { background: #007bff; color: white; }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">All Complaints</h2>
+
+<table>
+    <tr>
+        <th>ID</th><th>Complaint ID</th><th>Issue</th><th>Address</th>
+        <th>Date</th><th>Status</th><th>Zone</th><th>Citizen ID</th>
+    </tr>
+    <tr th:each="c : ${complaints}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.complaintId}"></td>
+        <td th:text="${c.issueType}"></td>
+        <td th:text="${c.address}"></td>
+        <td th:text="${c.requestedDate}"></td>
+        <td th:text="${c.status}"></td>
+        <td th:text="${c.zone}"></td>
+        <td th:text="${c.citizen.id}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

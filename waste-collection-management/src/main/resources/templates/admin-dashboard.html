@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="header">Admin Dashboard</div>
+
+<div class="container">
+
+    <!-- Collectors -->
+    <div class="section">
+        <h3>Collectors</h3>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Zone</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            <tr th:each="c : ${collectors}">
+                <td th:text="${c.id}"></td>
+                <td th:text="${c.name}"></td>
+                <td th:text="${c.zone}"></td>
+                <td th:text="${c.status}"></td>
+
+                <td>
+                    <form th:action="@{'/admin/collector/approve/' + ${c.id}}" method="post">
+                        <button class="btn-success">Approve</button>
+                    </form>
+
+                    <form th:action="@{'/admin/collector/reject/' + ${c.id}}" method="post">
+                        <button class="btn-danger">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Citizens -->
+    <div class="section">
+        <h3>Citizens</h3>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Zone</th>
+            </tr>
+
+            <tr th:each="c : ${citizens}">
+                <td th:text="${c.id}"></td>
+                <td th:text="${c.name}"></td>
+                <td th:text="${c.city}"></td>
+                <td th:text="${c.zone}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Add Schedule -->
+    <div class="section">
+        <h3>Add Collection Schedule</h3>
+
+        <form method="post" th:action="@{/admin/schedule/add}">
+            <input type="text" name="scheduleId" placeholder="Schedule ID" required>
+            <input type="text" name="zone" placeholder="Zone/Area" required>
+            <input type="text" name="day" placeholder="Collection Day" required>
+            <input type="text" name="time" placeholder="Collection Time" required>
+
+            <button class="btn-success">Add Schedule</button>
+        </form>
+    </div>
+
+    <!-- Complaints -->
+    <div class="section">
+        <h3>All Complaints</h3>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Complaint ID</th>
+                <th>Issue</th>
+                <th>Status</th>
+            </tr>
+
+            <tr th:each="c : ${complaints}">
+                <td th:text="${c.id}"></td>
+                <td th:text="${c.complaintId}"></td>
+                <td th:text="${c.issue}"></td>
+                <td th:text="${c.status}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Feedback -->
+    <div class="section">
+        <h3>Feedback</h3>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Message</th>
+                <th>Zone</th>
+            </tr>
+
+            <tr th:each="f : ${feedback}">
+                <td th:text="${f.id}"></td>
+                <td th:text="${f.message}"></td>
+                <td th:text="${f.zone}"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+

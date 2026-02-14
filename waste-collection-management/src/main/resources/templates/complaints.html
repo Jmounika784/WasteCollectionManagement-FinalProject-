@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Complaints</title>
+</head>
+<body>
+
+<h2>All Complaints</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Issue</th>
+        <th>Address</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Zone</th>
+    </tr>
+
+    <tr th:each="c : ${complaints}">
+        <td th:text="${c.complaintId}"></td>
+        <td th:text="${c.issueType}"></td>
+        <td th:text="${c.address}"></td>
+        <td th:text="${c.requestedDate}"></td>
+        <td th:text="${c.status}"></td>
+        <td th:text="${c.zone}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

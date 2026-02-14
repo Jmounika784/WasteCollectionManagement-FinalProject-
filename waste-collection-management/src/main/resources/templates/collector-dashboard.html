@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Collector Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="header">Collector Dashboard</div>
+
+<div class="container">
+
+    <!-- Schedules -->
+    <div class="section">
+        <h3>Assigned Schedules</h3>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Schedule ID</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            <tr th:each="s : ${schedules}">
+                <td th:text="${s.id}"></td>
+                <td th:text="${s.scheduleId}"></td>
+                <td th:text="${s.collectionDay}"></td>
+                <td th:text="${s.collectionTime}"></td>
+
+                <td>
+                    <form th:action="@{'/collector/schedule/update/' + ${s.id}}" method="post">
+                        <input type="hidden" name="zone" th:value="${zone}">
+                        <select name="status">
+                            <option>Collected</option>
+                            <option>Not Collected</option>
+                        </select>
+                </td>
+
+                <td>
+                        <button class="btn-success">Update</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Complaints -->
+    <div class="section">
+        <h3>Complaints in Your Zone</h3>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Complaint ID</th>
+                <th>Issue</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            <tr th:each="c : ${complaints}">
+                <td th:text="${c.id}"></td>
+                <td th:text="${c.complaintId}"></td>
+                <td th:text="${c.issue}"></td>
+
+                <td>
+                    <form th:action="@{'/collector/complaint/update/' + ${c.id}}" method="post">
+                        <input type="hidden" name="zone" th:value="${zone}">
+                        <select name="status">
+                            <option>Open</option>
+                            <option>In Progress</option>
+                            <option>Resolved</option>
+                        </select>
+                </td>
+
+                <td>
+                        <button class="btn-success">Update</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Feedback -->
+    <div class="section">
+        <h3>Feedback for Your Zone</h3>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Message</th>
+            </tr>
+
+            <tr th:each="f : ${feedback}">
+                <td th:text="${f.id}"></td>
+                <td th:text="${f.message}"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

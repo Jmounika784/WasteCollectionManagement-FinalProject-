@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Citizen Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="header">Citizen Dashboard</div>
+
+<div class="container">
+
+    <!-- Schedules -->
+    <div class="section">
+        <h3>Collection Schedule</h3>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Schedule ID</th>
+                <th>Day</th>
+                <th>Time</th>
+            </tr>
+
+            <tr th:each="s : ${schedules}">
+                <td th:text="${s.id}"></td>
+                <td th:text="${s.scheduleId}"></td>
+                <td th:text="${s.collectionDay}"></td>
+                <td th:text="${s.collectionTime}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Raise Complaint -->
+    <div class="section">
+        <h3>Raise Complaint</h3>
+
+        <form method="post" th:action="@{/citizen/complaint/add}">
+            <input type="hidden" name="city" th:value="${city}">
+            <input type="hidden" name="zone" th:value="${zone}">
+            <input type="hidden" name="citizenId" th:value="${citizenId}">
+
+            <input type="text" name="complaintId" placeholder="Complaint ID" required>
+            <input type="text" name="issue" placeholder="Issue Type" required>
+            <input type="text" name="address" placeholder="Address" required>
+            <input type="text" name="requestedDate" placeholder="Requested Date" required>
+
+            <button class="btn-success">Submit Complaint</button>
+        </form>
+    </div>
+
+    <!-- Complaint Status -->
+    <div class="section">
+        <h3>Your Complaints</h3>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Complaint ID</th>
+                <th>Issue</th>
+                <th>Status</th>
+            </tr>
+
+            <tr th:each="c : ${complaints}">
+                <td th:text="${c.id}"></td>
+                <td th:text="${c.complaintId}"></td>
+                <td th:text="${c.issue}"></td>
+                <td th:text="${c.status}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Feedback -->
+    <div class="section">
+        <h3>Provide Feedback</h3>
+
+        <form method="post" th:action="@{/citizen/feedback/add}">
+            <input type="hidden" name="zone" th:value="${zone}">
+            <input type="hidden" name="citizenId" th:value="${citizenId}">
+
+            <textarea name="message" placeholder="Write your feedback..." required></textarea>
+
+            <button class="btn">Submit Feedback</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
