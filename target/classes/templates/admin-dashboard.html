@@ -1,0 +1,74 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+<h2>Admin Dashboard</h2>
+<nav class="admin-nav">
+
+    <a href="/admin/collectors"> view Collectors</a>
+    <a href="/admin/citizens">View Citizens</a>
+    <a href="/admin/schedule/add">Add Schedules</a>
+    <a href="/admin/complaints">View Complaints</a>
+    <a href="/admin/feedback">View Feedback</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<h3>Summary</h3>
+
+<h4>Collectors</h4>
+<table border="1">
+    <tr>
+        <th>Name</th><th>User Id</th><th>Zone</th><th>Approved</th>
+    </tr>
+    <tr th:each="c : ${collectors}">
+        <td th:text="${c.name}"></td>
+        <td th:text="${c.userId}"></td>
+        <td th:text="${c.zone}"></td>
+        <td th:text="${c.approved}"></td>
+    </tr>
+</table>
+
+<h4>Citizens</h4>
+<table border="1">
+    <tr>
+        <th>Name</th><th>User Id</th><th>City</th><th>Zone</th>
+    </tr>
+    <tr th:each="c : ${citizens}">
+        <td th:text="${c.name}"></td>
+        <td th:text="${c.userId}"></td>
+        <td th:text="${c.city}"></td>
+        <td th:text="${c.zone}"></td>
+    </tr>
+</table>
+
+<h4>Complaints</h4>
+<table border="1">
+    <tr>
+        <th>Id</th><th>Issue</th><th>Status</th><th>Zone</th>
+    </tr>
+    <tr th:each="cmp : ${complaints}">
+        <td th:text="${cmp.id}"></td>
+        <td th:text="${cmp.issueType}"></td>
+        <td th:text="${cmp.status}"></td>
+        <td th:text="${cmp.zone}"></td>
+    </tr>
+</table>
+
+<h4>Feedback</h4>
+<table border="1">
+    <tr>
+        <th>Id</th><th>Message</th><th>Rating</th><th>Zone</th>
+    </tr>
+    <tr th:each="fb : ${feedbacks}">
+        <td th:text="${fb.id}"></td>
+        <td th:text="${fb.message}"></td>
+        <td th:text="${fb.rating}"></td>
+        <td th:text="${fb.zone}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

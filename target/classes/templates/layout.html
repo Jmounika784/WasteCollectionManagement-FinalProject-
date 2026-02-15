@@ -1,0 +1,35 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">Dashboard</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-title">Waste Management</div>
+
+    <ul class="sidebar-menu">
+        <li><a th:href="@{/admin/dashboard}" th:if="${role == 'ADMIN'}">Admin Dashboard</a></li>
+        <li><a th:href="@{'/collector/dashboard?name=' + ${collectorName}}" th:if="${role == 'COLLECTOR'}">Collector Dashboard</a></li>
+        <li><a th:href="@{'/citizen/dashboard?userId=' + ${citizenId}}" th:if="${role == 'CITIZEN'}">Citizen Dashboard</a></li>
+
+        <li><a th:href="@{/logout}">Logout</a></li>
+    </ul>
+</div>
+
+<div class="main-content">
+    <div class="header">
+        <div class="header-title" th:text="${pageTitle}">Dashboard</div>
+    </div>
+
+    <div class="page">
+        <div th:replace="${content}"></div>
+    </div>
+</div>
+
+</body>
+</html>

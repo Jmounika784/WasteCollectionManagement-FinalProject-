@@ -1,0 +1,45 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Citizen Dashboard</title>
+</head>
+<body>
+<h2>Citizen Dashboard</h2>
+
+<p>Welcome, <span th:text="${citizen.name}"></span> (Zone: <span th:text="${citizen.zone}"></span>)</p>
+
+<a th:href="@{/logout}">Logout</a> |
+<a th:href="@{'/citizen/complaint'(userId=${citizen.userId})}">Raise Complaint</a> |
+<a th:href="@{'/citizen/feedback'(userId=${citizen.userId})}">Give Feedback</a>
+
+<h3>Collection Schedule</h3>
+<table border="1">
+    <tr>
+        <th>Id</th><th>Zone</th><th>Day</th><th>Time</th><th>Status</th>
+    </tr>
+    <tr th:each="s : ${schedules}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.zone}"></td>
+        <td th:text="${s.collectionDay}"></td>
+        <td th:text="${s.collectionTime}"></td>
+        <td th:text="${s.collectionStatus}"></td>
+    </tr>
+</table>
+
+<h3>Your Complaints</h3>
+<table border="1">
+    <tr>
+        <th>Id</th><th>Issue</th><th>Address</th><th>Date</th><th>Status</th>
+    </tr>
+    <tr th:each="cmp : ${complaints}">
+        <td th:text="${cmp.id}"></td>
+        <td th:text="${cmp.issueType}"></td>
+        <td th:text="${cmp.address}"></td>
+        <td th:text="${cmp.requestedDate}"></td>
+        <td th:text="${cmp.status}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

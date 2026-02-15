@@ -1,0 +1,40 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Complaint Status</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<div class="header">
+    <div class="header-title">Update Complaint Status</div>
+    <div class="header-right">
+        <a th:href="@{'/collector/dashboard?name=' + ${collector.name}}">Back</a>
+    </div>
+</div>
+
+<div class="page">
+    <div class="card">
+        <h3>Update Status</h3>
+
+        <form th:action="@{'/collector/complaint/' + ${complaint.id} + '/status'}" method="post">
+            <input type="hidden" name="name" th:value="${collector.name}">
+
+            <p><strong>Complaint ID:</strong> <span th:text="${complaint.id}"></span></p>
+            <p><strong>Issue:</strong> <span th:text="${complaint.issueType}"></span></p>
+
+            <label>Status:</label>
+            <select name="status">
+                <option>Open</option>
+                <option>In progress</option>
+                <option>Resolved</option>
+            </select>
+
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!-- <link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - Waste Management</title>
+</head>
+<body class="login-bg">
+
+<h2>Login</h2>
+
+<div th:if="${param.error}">
+    <p style="color:red;">Invalid credentials or not approved.</p>
+</div>
+
+<h3>Admin Login</h3>
+<form th:action="@{/login/admin}" method="post">
+    <label>User Id:</label>
+    <input type="text" name="userId" required />
+    <label>Password:</label>
+    <input type="password" name="password" required />
+    <button type="submit">Login as Admin</button>
+</form>
+
+<h3>Collector Login</h3>
+<form th:action="@{/login/collector}" method="post">
+    <label>Collector Name:</label>
+    <input type="text" name="name" required />
+    <label>Password:</label>
+    <input type="password" name="password" required />
+    <button type="submit">Login as Collector</button>
+</form>
+
+<h3>Citizen Login</h3>
+<form th:action="@{/login/citizen}" method="post">
+    <label>User Id:</label>
+    <input type="text" name="userId" required />
+    <label>Password:</label>
+    <input type="password" name="password" required />
+    <button type="submit">Login as Citizen</button>
+</form>
+
+<hr/>
+
+<a th:href="@{/collector/register}">Collector Registration</a> |
+<a th:href="@{/citizen/register}">Citizen Registration</a>
+
+</body>
+</html>
+ -->
+ 
+ 
+ 
+ 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - Waste Management</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body class="login-container">
+
+<div class="login-card">
+
+    <!-- LEFT SIDE OPTIONS -->
+    <div class="left-panel">
+        <h2 class="app-title">Waste Management</h2>
+
+        <div class="role-option" onclick="selectRole('admin')">
+            <span>Login as Admin</span>
+        </div>
+
+        <div class="role-option" onclick="selectRole('collector')">
+            <span>Login as Collector</span>
+        </div>
+
+        <div class="role-option" onclick="selectRole('citizen')">
+            <span>Login as Citizen</span>
+        </div>
+
+        <!-- <div class="register-link" id="registerLink">
+            
+        </div> -->
+    </div>
+
+    <!-- RIGHT SIDE LOGIN FORM -->
+    <div class="right-panel">
+
+        <h3 id="formTitle">Select a Role to Login</h3>
+
+        <div th:if="${param.error}">
+            <p class="error-msg">Invalid credentials or not approved.</p>
+        </div>
+
+        <!-- ADMIN LOGIN -->
+        <form id="adminForm" class="login-form" th:action="@{/login/admin}" method="post" style="display:none;">
+            <div class="container"><label>User Id</label>
+            <input type="text" name="userId" required></div>
+
+            <div class="container"><label>Password</label>
+            <input type="password" name="password" required></div>
+
+            <button type="submit">Login as Admin</button>
+        </form>
+
+        <!-- COLLECTOR LOGIN -->
+        <form id="collectorForm" class="login-form" th:action="@{/login/collector}" method="post" style="display:none;">
+            <div class="container"><label>Collector Name</label>
+            <input type="text" name="name" required></div>
+            <div class="container"><label>Password</label>
+            <input type="password" name="password" required></div>
+			<br>
+            <button type="submit">Login as Collector</button>
+            <button><a th:href="@{/collector/register}">Collector Registration</a></button>
+        </form>
+
+        <!-- CITIZEN LOGIN -->
+        <form id="citizenForm" class="login-form" th:action="@{/login/citizen}" method="post" style="display:none;">
+            <div class="container"><label>User Id</label>
+            <input type="text" name="userId" required></div>
+            <div class="container"><label>Password</label>
+            <input type="password" name="password" required></div>
+			<br>
+            <button type="submit">Login as Citizen</button>
+            <button><a th:href="@{/citizen/register}">Citizen Registration</a></button>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    function selectRole(role) {
+        document.getElementById("adminForm").style.display = "none";
+        document.getElementById("collectorForm").style.display = "none";
+        document.getElementById("citizenForm").style.display = "none";
+
+        let title = document.getElementById("formTitle");
+        let register = document.getElementById("registerLink");
+
+        if (role === 'admin') {
+            document.getElementById("adminForm").style.display = "block";
+            title.innerText = "Admin Login";
+            register.innerHTML = "";
+        }
+        if (role === 'collector') {
+            document.getElementById("collectorForm").style.display = "block";
+            title.innerText = "Collector Login";
+            register.innerHTML = `<a th:href="@{/collector/register}">Collector Registration</a>`;
+        }
+        if (role === 'citizen') {
+            document.getElementById("citizenForm").style.display = "block";
+            title.innerText = "Citizen Login";
+            register.innerHTML = `<a th:href="@{/citizen/register}">Citizen Registration</a>`;
+        }
+    }
+</script>
+
+</body>
+</html>
+ 

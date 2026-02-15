@@ -1,0 +1,26 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Schedule</title>
+</head>
+<body>
+<h2>Add Collection Schedule</h2>
+
+<a th:href="@{/admin/dashboard}">Back to Dashboard</a>
+
+<form th:action="@{/admin/schedule/add}" th:object="${schedule}" method="post">
+    <label>Zone/Area:</label>
+    <input type="text" th:field="*{zone}" required /><br/>
+
+    <label>Collection Day:</label>
+    <input type="text" th:field="*{collectionDay}" required /><br/>
+
+    <label>Collection Time:</label>
+    <input type="text" th:field="*{collectionTime}" required /><br/>
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>

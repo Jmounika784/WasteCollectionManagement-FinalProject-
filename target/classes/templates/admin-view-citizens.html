@@ -1,0 +1,26 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Citizens</title>
+</head>
+<body>
+<h2>All Citizens</h2>
+
+<a th:href="@{/admin/dashboard}">Back to Dashboard</a>
+
+<table border="1">
+    <tr>
+        <th>Id</th><th>Name</th><th>User Id</th><th>City</th><th>Zone</th>
+    </tr>
+    <tr th:each="c : ${citizens}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.name}"></td>
+        <td th:text="${c.userId}"></td>
+        <td th:text="${c.city}"></td>
+        <td th:text="${c.zone}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Collector Dashboard</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="header-title">Collector Dashboard</div>
+    <div class="header-right">
+        <span th:text="${collector.name}"></span>
+        &nbsp;| Zone:
+        <span th:text="${collector.zone}"></span>
+        &nbsp;| <a th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+
+<div class="page">
+
+    <!-- ASSIGNED SCHEDULES -->
+    <div class="card">
+        <h3>Assigned Schedules</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Zone</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                </tr>
+
+                <tr th:each="s : ${schedules}">
+                    <td th:text="${s.id}"></td>
+                    <td th:text="${s.zone}"></td>
+                    <td th:text="${s.collectionDay}"></td>
+                    <td th:text="${s.collectionTime}"></td>
+                    <td th:text="${s.collectionStatus}"></td>
+
+                    <td>
+                        <form th:action="@{'/collector/schedule/' + ${s.id} + '/status'}" method="post">
+                            <input type="hidden" name="name" th:value="${collector.name}">
+                            <select name="status">
+                                <option>Collected</option>
+                                <option>Not collected</option>
+                            </select>
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <!-- COMPLAINTS -->
+    <div class="card">
+        <h3>Complaints in Your Zone</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Issue</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                </tr>
+
+                <tr th:each="cmp : ${complaints}">
+                    <td th:text="${cmp.id}"></td>
+                    <td th:text="${cmp.issueType}"></td>
+                    <td th:text="${cmp.address}"></td>
+
+                    <td>
+                        <span class="status-badge"
+                              th:classappend="${cmp.status} == 'Open' ? ' status-open' :
+                                              (${cmp.status} == 'In progress' ? ' status-progress' : ' status-resolved')"
+                              th:text="${cmp.status}">
+                        </span>
+                    </td>
+
+                    <td>
+                        <form th:action="@{'/collector/complaint/' + ${cmp.id} + '/status'}" method="post">
+                            <input type="hidden" name="name" th:value="${collector.name}">
+                            <select name="status">
+                                <option>Open</option>
+                                <option>In progress</option>
+                                <option>Resolved</option>
+                            </select>
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <!-- FEEDBACK -->
+    <div class="card">
+        <h3>Feedback for Your Zone</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Message</th>
+                    <th>Rating</th>
+                </tr>
+
+                <tr th:each="fb : ${feedbacks}">
+                    <td th:text="${fb.id}"></td>
+                    <td th:text="${fb.message}"></td>
+                    <td th:text="${fb.rating}"></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

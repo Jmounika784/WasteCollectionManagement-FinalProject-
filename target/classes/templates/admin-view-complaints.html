@@ -1,0 +1,27 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Complaints</title>
+</head>
+<body>
+<h2>All Complaints</h2>
+
+<a th:href="@{/admin/dashboard}">Back to Dashboard</a>
+
+<table border="1">
+    <tr>
+        <th>Id</th><th>Issue</th><th>Address</th><th>Date</th><th>Status</th><th>Zone</th>
+    </tr>
+    <tr th:each="cmp : ${complaints}">
+        <td th:text="${cmp.id}"></td>
+        <td th:text="${cmp.issueType}"></td>
+        <td th:text="${cmp.address}"></td>
+        <td th:text="${cmp.requestedDate}"></td>
+        <td th:text="${cmp.status}"></td>
+        <td th:text="${cmp.zone}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

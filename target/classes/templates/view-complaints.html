@@ -1,0 +1,42 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Complaints</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<div class="header">
+    <div class="header-title">Complaints in Your Zone</div>
+    <div class="header-right">
+        <a th:href="@{'/collector/dashboard?name=' + ${collector.name}}">Back</a>
+    </div>
+</div>
+
+<div class="page">
+    <div class="card">
+        <h3>Your Complaints</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Issue</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr th:each="cmp : ${complaints}">
+                    <td th:text="${cmp.id}"></td>
+                    <td th:text="${cmp.issueType}"></td>
+                    <td th:text="${cmp.address}"></td>
+                    <td th:text="${cmp.status}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Raise Complaint</title>
+</head>
+<body>
+<h2>Raise Complaint</h2>
+
+<form th:action="@{/citizen/complaint}" th:object="${complaint}" method="post">
+    <input type="hidden" name="userId" th:value="${userId}" />
+
+    <label>Issue Type:</label>
+    <input type="text" th:field="*{issueType}" required /><br/>
+
+    <label>Address:</label>
+    <input type="text" th:field="*{address}" required /><br/>
+
+    <button type="submit">Submit</button>
+</form>
+
+<a th:href="@{'/citizen/dashboard'(userId=${userId})}">Back to Dashboard</a>
+
+</body>
+</html>

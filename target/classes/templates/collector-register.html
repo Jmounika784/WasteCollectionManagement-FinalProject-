@@ -1,0 +1,38 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Collector Registration</title>
+</head>
+<body>
+<h2>Collector Registration</h2>
+
+<form th:action="@{/collector/register}" th:object="${collector}" method="post">
+    <label>Collector Name:</label>
+    <input type="text" th:field="*{name}" required /><br/>
+
+    <label>Password:</label>
+    <input type="password" th:field="*{password}" required /><br/>
+
+    <label>Zone/Area:</label>
+    <input type="text" th:field="*{zone}" required /><br/>
+
+    <label>City:</label>
+    <input type="text" th:field="*{city}" required /><br/>
+
+    <label>Contact Number:</label>
+    <input type="text" th:field="*{contactNumber}" required /><br/>
+
+    <label>Email Id:</label>
+    <input type="email" th:field="*{email}" required /><br/>
+
+    <label>Employee Id (User Id):</label>
+    <input type="text" th:field="*{userId}" required /><br/>
+
+    <button type="submit">Register</button>
+</form>
+
+<a th:href="@{/login}">Back to Login</a>
+
+</body>
+</html>

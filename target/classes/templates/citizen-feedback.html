@@ -1,0 +1,25 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Provide Feedback</title>
+</head>
+<body>
+<h2>Provide Feedback</h2>
+
+<form th:action="@{/citizen/feedback}" th:object="${feedback}" method="post">
+    <input type="hidden" name="userId" th:value="${userId}" />
+
+    <label>Message:</label>
+    <textarea th:field="*{message}" required></textarea><br/>
+
+    <label>Rating (1-5):</label>
+    <input type="number" th:field="*{rating}" min="1" max="5" required /><br/>
+
+    <button type="submit">Submit</button>
+</form>
+
+<a th:href="@{'/citizen/dashboard'(userId=${userId})}">Back to Dashboard</a>
+
+</body>
+</html>

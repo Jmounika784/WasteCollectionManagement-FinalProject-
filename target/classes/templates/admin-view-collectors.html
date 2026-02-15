@@ -1,0 +1,34 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Collectors</title>
+</head>
+<body>
+<h2>All Collectors</h2>
+
+<a th:href="@{/admin/dashboard}">Back to Dashboard</a>
+
+<table border="1">
+    <tr>
+        <th>Id</th><th>Name</th><th>User Id</th><th>Zone</th><th>Approved</th><th>Actions</th>
+    </tr>
+    <tr th:each="c : ${collectors}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.name}"></td>
+        <td th:text="${c.userId}"></td>
+        <td th:text="${c.zone}"></td>
+        <td th:text="${c.approved}"></td>
+        <td>
+            <form th:action="@{'/admin/collector/' + ${c.id} + '/approve'}" method="post" style="display:inline;">
+                <button type="submit">Approve</button>
+            </form>
+            <form th:action="@{'/admin/collector/' + ${c.id} + '/reject'}" method="post" style="display:inline;">
+                <button type="submit">Reject</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

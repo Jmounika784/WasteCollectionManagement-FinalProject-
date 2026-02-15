@@ -1,0 +1,25 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Feedback</title>
+</head>
+<body>
+<h2>All Feedback</h2>
+
+<a th:href="@{/admin/dashboard}">Back to Dashboard</a>
+
+<table border="1">
+    <tr>
+        <th>Id</th><th>Message</th><th>Rating</th><th>Zone</th>
+    </tr>
+    <tr th:each="fb : ${feedbacks}">
+        <td th:text="${fb.id}"></td>
+        <td th:text="${fb.message}"></td>
+        <td th:text="${fb.rating}"></td>
+        <td th:text="${fb.zone}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

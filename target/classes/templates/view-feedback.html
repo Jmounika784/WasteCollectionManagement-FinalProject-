@@ -1,0 +1,40 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Feedback</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<div class="header">
+    <div class="header-title">Feedback for Your Zone</div>
+    <div class="header-right">
+        <a th:href="@{'/collector/dashboard?name=' + ${collector.name}}">Back</a>
+    </div>
+</div>
+
+<div class="page">
+    <div class="card">
+        <h3>Your Feedback</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Message</th>
+                    <th>Rating</th>
+                </tr>
+
+                <tr th:each="fb : ${feedbacks}">
+                    <td th:text="${fb.id}"></td>
+                    <td th:text="${fb.message}"></td>
+                    <td th:text="${fb.rating}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

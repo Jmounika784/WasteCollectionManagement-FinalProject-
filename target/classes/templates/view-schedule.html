@@ -1,0 +1,44 @@
+<link rel="stylesheet" th:href="@{/style.css}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Assigned Schedule</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<div class="header">
+    <div class="header-title">Assigned Schedule</div>
+    <div class="header-right">
+        <a th:href="@{'/collector/dashboard?name=' + ${collector.name}}">Back</a>
+    </div>
+</div>
+
+<div class="page">
+    <div class="card">
+        <h3>Your Assigned Schedule</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Zone</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr th:each="s : ${schedules}">
+                    <td th:text="${s.id}"></td>
+                    <td th:text="${s.zone}"></td>
+                    <td th:text="${s.collectionDay}"></td>
+                    <td th:text="${s.collectionTime}"></td>
+                    <td th:text="${s.collectionStatus}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
